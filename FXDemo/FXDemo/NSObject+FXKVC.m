@@ -74,9 +74,7 @@
 
 - (nullable id)fx_valueForKey:(NSString *)key {
     
-    if (key == nil  || key.length == 0) {
-        return nil;
-    }
+    if (key == nil  || key.length == 0) return nil;
 
     NSString *Key = key.capitalizedString;
     NSString *getKey = [NSString stringWithFormat:@"get%@",Key];
@@ -110,14 +108,15 @@
     
     if (![self.class accessInstanceVariablesDirectly]) {
         
+        if (undefinedIMP) {
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        if (undefinedIMP) {
             return [self performSelector:NSSelectorFromString(undefinedMethodName) withObject:key];
+#pragma clang diagnostic pop
         } else {
             @throw [NSException exceptionWithName:@"FXUnknownKeyException" reason:[NSString stringWithFormat:@"****[%@ %@]: this class is not key value coding-compliant for the key %@.", self, NSStringFromSelector(_cmd), key] userInfo:nil];
         }
-#pragma clang diagnostic pop
     }
     
     NSMutableArray *mArray = [self getIvarListName];
@@ -138,16 +137,16 @@
         return object_getIvar(self, ivar);;
     }
 
+    if (undefinedIMP) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    if (undefinedIMP) {
         return [self performSelector:NSSelectorFromString(undefinedMethodName) withObject:key];
+#pragma clang diagnostic pop
     } else {
         @throw [NSException exceptionWithName:@"FXUnknownKeyException" reason:[NSString stringWithFormat:@"****[%@ %@]: this class is not key value coding-compliant for the key %@.", self, NSStringFromSelector(_cmd), key] userInfo:nil];
     }
-#pragma clang diagnostic pop
 
-    return @"";
+    return nil;
 }
 
 #pragma mark - 相关方法

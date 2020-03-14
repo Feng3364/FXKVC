@@ -19,7 +19,7 @@
     FXPerson *person = [FXPerson new];
     person.name = @"Felix";
 //    [person setValue:@"Felix" forKey:@"a"];
-    NSLog(@"%@", [person valueForKey:@"a"]);
+//    NSLog(@"%@", [person valueForKey:@"a"]);
     
 //    [person fx_setValue:@"Felix" forKey:@"a"];
 //    NSLog(@"%@", [person fx_valueForKey:@"a"]);

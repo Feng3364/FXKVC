@@ -9,17 +9,17 @@
 
 @implementation FXPerson
 
-+ (BOOL)accessInstanceVariablesDirectly {
-    return NO;
-}
+//+ (BOOL)accessInstanceVariablesDirectly {
+//    return NO;
+//}
 //
 //- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
 //    NSLog(@"%s", __func__);
 //}
 //
-- (id)valueForUndefinedKey:(NSString *)key {
-    NSLog(@"%s", __func__);
-    return @"NULL";
-}
+//- (id)valueForUndefinedKey:(NSString *)key {
+//    NSLog(@"%s", __func__);
+//    return @"NULL";
+//}
 
 @end
